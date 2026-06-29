@@ -1,7 +1,6 @@
 package shop.user.api;
 
 import shop.user.domain.User;
-import shop.user.infrastructure.UserFileRepository;
 import shop.user.repository.UserRepository;
 
 import java.util.Scanner;
@@ -37,6 +36,17 @@ public class UserConsoleOperations {
             } break;
             case "2": {
                 System.out.println("Вы можете войти в приложение");
+            } break;
+            case "3": {
+                System.out.println("Поиск email пользователя по id");
+                System.out.println("Введите id:");
+                String id = scanner.nextLine();
+                User foundUser = userRepository.findById(id);
+                if (foundUser != null) {
+                    System.out.println("Email: " + foundUser.getEmail());
+                } else {
+                    System.out.println("Пользователя с таким id не существует");
+                }
             } break;
             case "0": {
                 System.exit(0);

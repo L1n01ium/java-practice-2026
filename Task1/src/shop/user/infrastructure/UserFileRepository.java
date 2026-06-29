@@ -3,9 +3,7 @@ package shop.user.infrastructure;
 import shop.user.domain.User;
 import shop.user.repository.UserRepository;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.UUID;
 
 public class UserFileRepository implements UserRepository {
@@ -22,6 +20,7 @@ public class UserFileRepository implements UserRepository {
             String id = UUID.randomUUID().toString();
             user.setId(id);
             writer.write(user.getId() + "|" + user.getEmail() + "|" + user.getPassword() + "|" + user.getProfileDescription());
+            writer.newLine();
         } catch (IOException e) {
             throw new IllegalStateException(e);
         }
@@ -29,6 +28,21 @@ public class UserFileRepository implements UserRepository {
 
     @Override
     public User findById(String id) {
-        return null;
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (!line.isEmpty()) {
+                    String[] splitStr = line.split("\\|");
+                    if (splitStr.length == 4) {
+                        if (splitStr[0].equals(id)) {
+                            return new User(splitStr[0], splitStr[1], splitStr[2], splitStr[3]);
+                        }
+                    }
+                }
+            }
+            return null;
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
