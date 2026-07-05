@@ -98,6 +98,6 @@ public class UserFileRepository implements UserRepository {
 
     @Override
     public List<User> findAll() {
-        return Collections.emptyList(); // или реализуй чтение из файла, если нужно
+        return Collections.emptyList();
     }
 }
