@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourcePerFileMappings">
+    <file url="file://$PROJECT_DIR$/.idea/queries/Query.sql" value="a8d10a83-8cc0-4168-a011-4c44bde36041" />
+    <file url="file://$PROJECT_DIR$/resources/schema.sql" value="a8d10a83-8cc0-4168-a011-4c44bde36041" />
+    <file url="file://$PROJECT_DIR$/src/ru/itis/shop/user/infrastructure/persistence/jdbc/UserRepositoryJdbcImpl.java" value="3f8214c1-8a14-4ce9-b7b2-7d1934024b4d" />
+  </component>
+</project>
